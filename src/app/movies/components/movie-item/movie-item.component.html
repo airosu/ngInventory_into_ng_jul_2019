@@ -17,7 +17,7 @@
       </div>
     </div>
     <div>
-      <div [hidden]="commentSaved">
+      <div *ngIf="!commentSaved; else commentStatic">
         <mat-form-field class="comments">
           <textarea
             [(ngModel)]="movieComment"
@@ -32,14 +32,14 @@
           {{wordCount()}} words
         </div>
       </div>
-      <div [hidden]="!commentSaved">
+      <ng-template #commentStatic>
         <p>
           Comment:
         </p>
         <p class="comment">
           {{movieComment}}
         </p>
-      </div>
+      </ng-template>
       <mat-card-actions>
         <button
           mat-raised-button
