@@ -17,22 +17,36 @@
       </div>
     </div>
     <div>
-      <mat-form-field class="comments">
-        <textarea
-          [(ngModel)]="movieComment"
-          placeholder="Comment"
-          matInput
-          matTextareaAutosize
-          matAutosizeMinRows="1"
-          matAutosizeMaxRows="4"
-        ></textarea>
-      </mat-form-field>
-      <div>
-        {{wordCount()}} words
+      <div [hidden]="commentSaved">
+        <mat-form-field class="comments">
+          <textarea
+            [(ngModel)]="movieComment"
+            placeholder="Comment"
+            matInput
+            matTextareaAutosize
+            matAutosizeMinRows="1"
+            matAutosizeMaxRows="4"
+          ></textarea>
+        </mat-form-field>
+        <div [ngStyle]="{color: movieComment.trim().length === 0 ? 'firebrick' : 'lightseagreen'}">
+          {{wordCount()}} words
+        </div>
+      </div>
+      <div [hidden]="!commentSaved">
+        <p>
+          Comment:
+        </p>
+        <p class="comment">
+          {{movieComment}}
+        </p>
       </div>
       <mat-card-actions>
-        <button mat-raised-button (click)="movieComment = ''">
-          Clear comment
+        <button
+          mat-raised-button
+          [disabled]="movieComment.trim().length === 0"
+          (click)="saveComment()"
+        >
+          {{commentSaved ? 'Edit' : 'Save'}} comment
         </button>
       </mat-card-actions>
     </div>

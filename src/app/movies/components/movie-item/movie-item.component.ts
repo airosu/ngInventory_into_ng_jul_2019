@@ -13,6 +13,11 @@ export class MovieItemComponent {
   poster = 'https://images-na.ssl-images-amazon.com/images/M/MV5BMjQ1MzcxNjg4N15BMl5BanBnXkFtZTgwNzgwMjY4MzI@._V1_SX300.jpg';
 
   movieComment = '';
+  commentSaved = false;
+
+  saveComment() {
+    this.commentSaved = !this.commentSaved;
+  }
 
   wordCount() {
     if (!this.movieComment || this.movieComment.length === 0) {
