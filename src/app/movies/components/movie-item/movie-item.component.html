@@ -1,4 +1,4 @@
-<mat-card class="movie-item" *ngFor="let movie of movies">
+<mat-card class="movie-item">
   <mat-card-header>
     <mat-card-title>
       {{movie.title}} <span class="movie-year">({{movie.year}})</span>
@@ -18,7 +18,7 @@
     </div>
   </mat-card-content>
   <div>
-    <div *ngIf="!movie.commentSaved; else commentStatic">
+    <div *ngIf="!commentSaved; else commentStatic">
       <mat-form-field class="comments">
         <textarea
           [(ngModel)]="movie.comment"
@@ -48,7 +48,7 @@
         [disabled]="movie.comment.trim().length === 0"
         (click)="saveComment(movie.id)"
       >
-        {{movie.commentSaved ? 'Edit' : 'Save'}} comment
+        {{commentSaved ? 'Edit' : 'Save'}} comment
       </button>
     </mat-card-actions>
   </div>
