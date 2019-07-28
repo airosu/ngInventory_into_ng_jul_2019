@@ -1,18 +1,36 @@
-import { Component, Input } from '@angular/core';
-
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
 @Component({
   selector: 'ngi-movie-item',
   templateUrl: './movie-item.component.html',
   styleUrls: ['./movie-item.component.css']
 })
-export class MovieItemComponent {
+export class MovieItemComponent implements OnInit {
   @Input() movie;
+  @Output() commentUpdate = new EventEmitter();
   commentSaved;
+  movieComment;
 
-  // saveComment(id) {
-  //   const theMovie = this.movies.find(movie => movie.id === id);
-  //   theMovie.commentSaved = !theMovie.commentSaved;
-  // }
+  ngOnInit() {
+    this.movieComment = this.movie.comment;
+    this.commentSaved = this.movieComment.length > 0;
+  }
+
+  saveComment() {
+    if (!this.commentSaved) {
+      const payload = {
+        id: this.movie.id,
+        newComment: this.movieComment
+      };
+      this.commentUpdate.emit(payload);
+    }
+    this.commentSaved = !this.commentSaved;
+  }
 
   wordCount(comment) {
     if (!comment || comment.length === 0) {

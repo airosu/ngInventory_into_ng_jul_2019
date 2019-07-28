@@ -50,4 +50,11 @@ export class MovieListComponent implements OnInit {
   ngOnInit() {
   }
 
+  handleCommentUpdate(commentPayload) {
+    const index = this.movies.findIndex(movie => movie.id === commentPayload.id);
+    this.movies[index] = {
+      ...this.movies[index],
+      comment: commentPayload.newComment
+    };
+  }
 }
