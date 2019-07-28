@@ -13,6 +13,7 @@ import {
 export class MovieItemComponent implements OnInit {
   @Input() movie;
   @Output() commentUpdate = new EventEmitter();
+  @Output() movieDelete = new EventEmitter();
   commentSaved;
   movieComment;
 
@@ -41,5 +42,9 @@ export class MovieItemComponent implements OnInit {
         .replace(/  +/g, ' ')
         .split(' ').length;
     }
+  }
+
+  handleDelete() {
+    this.movieDelete.emit(this.movie.id);
   }
 }
