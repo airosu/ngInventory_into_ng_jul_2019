@@ -41,4 +41,12 @@ export class MovieService {
         this.movies.next(data);
       });
   }
+
+  searchMovie(searchTerm) {
+    this.http
+      .get<Movie[]>(`${this.apiUrl}?q=${searchTerm.trim()}`)
+      .subscribe(data => {
+        this.movies.next(data);
+      });
+  }
 }
