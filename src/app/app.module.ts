@@ -8,16 +8,25 @@ import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 import { MoviesModule } from './movies/movies.module';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
     MoviesModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      {
+        path: 'movies',
+        loadChildren: './movies/movies.module#MoviesModule'
+      }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
