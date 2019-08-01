@@ -18,7 +18,6 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    MoviesModule,
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },

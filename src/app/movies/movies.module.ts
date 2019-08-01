@@ -18,9 +18,18 @@ import { MovieDetailComponent } from '../movies/components/movie-detail/movie-de
     FlexLayoutModule,
     FormsModule,
     RouterModule.forChild([
-      { path: 'movies', component: MovieListComponent },
-      { path: 'movies/new', component: MovieDetailComponent },
-      { path: 'movies/:id', component: MovieDetailComponent }
+      {
+        path: '',
+        component: MovieListComponent
+      },
+      {
+        path: 'new',
+        component: MovieDetailComponent
+      },
+      {
+        path: ':id',
+        component: MovieDetailComponent
+      }
     ])
   ],
   exports: [MovieListComponent]
