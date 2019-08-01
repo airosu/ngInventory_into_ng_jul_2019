@@ -9,18 +9,22 @@ import { Movie } from '../../model/movie';
 })
 export class MovieListComponent implements OnInit {
   movies: Movie[];
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService) {}
 
   ngOnInit() {
-    this.movies = this.movieService.getMovies();
+    this.movieService.getMovies().subscribe(data => {
+      this.movies = data;
+    });
   }
 
   handleCommentUpdate(commentPayload) {
-    this.movieService.updateComment(commentPayload.id, commentPayload.newComment)
+    this.movieService.updateComment(
+      commentPayload.id,
+      commentPayload.newComment
+    );
   }
 
   handleMovieDelete(movieId) {
     this.movieService.deleteMovie(movieId);
-    this.movies = this.movieService.getMovies();
   }
 }
