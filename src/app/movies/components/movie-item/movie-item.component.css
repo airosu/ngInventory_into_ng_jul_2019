@@ -1,0 +1,27 @@
+mat-card {
+    width: 500px;
+    margin: 16px;
+}
+
+mat-card-header {
+    border-bottom: 1px solid lightgray;
+}
+
+mat-card-title {
+    font-size: 24px;
+}
+
+
+
+.movie-poster {
+    width: 100%;
+}
+
+.movie-year {
+    font-size: 14px;
+}
+
+.details > div {
+    padding: 16px 12px;
+}
+

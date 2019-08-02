@@ -1,0 +1,27 @@
+<mat-card class="movie-item">
+    <mat-card-header>
+        <mat-card-title>
+            {{title}} <span class="movie-year">({{year}})</span>
+        </mat-card-title>
+
+        <mat-card-subtitle>
+            <p class="movie-genre">{{genre}}</p>
+        </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div fxLayout="row" class="details">
+            <div fxFlex="30">
+                <img
+                    [src]="poster"
+                    class="movie-poster"
+                    (mouseover)="hoverMe()"
+                >
+            </div>
+            <div fxFlex="70">
+                {{plot}}
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+

@@ -7,6 +7,8 @@ import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 
+import { MovieModule } from './movies/movies.module';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -16,6 +18,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
+    MovieModule // All new modules need to be registered to the root module / app.module.js
   ],
   providers: [],
   bootstrap: [AppComponent]
