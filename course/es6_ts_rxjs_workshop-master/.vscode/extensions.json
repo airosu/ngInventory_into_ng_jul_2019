@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "orta.vscode-jest",
+        "wallabyjs.quokka-vscode",
+        "esbenp.prettier-vscode"
+    ],
+}
