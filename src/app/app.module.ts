@@ -4,8 +4,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from './material.module';
-
 import { AppComponent } from './app.component';
+
+
+import { MoviesModule } from './movies/movies.module';
+
+
 
 @NgModule({
   declarations: [
@@ -16,6 +20,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
+    MoviesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

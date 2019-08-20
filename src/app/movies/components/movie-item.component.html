@@ -1,0 +1,74 @@
+
+
+<mat-card 
+    class="movie-item" 
+    *ngFor="let movie of movies; let $i = index; let $o = odd; let $e = even;"
+    [ngClass]="{'odd-class': $o, 'even-class': $e}"
+    >Card #{{$i+1}}, Even: {{$e}}, Odd: {{$o}}
+
+    <mat-card-header>
+        <mat-card-title>
+            {{movie.title}} <span class="movie-year"></span>
+        </mat-card-title>
+
+        <mat-card-subtitle>
+            {{movie.genre}}
+        </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="details" fxLayout="row">
+            <div fxFlex="30">
+                <img [src]="movie.poster">
+            </div>
+            <div fxFlex="70">
+                {{movie.plot}}
+            </div>
+        </div>
+
+        <div>
+
+            <!-- <div [hidden]="commentSaved"> -->
+            <!-- Replacing this with conditional rendering -->
+            <div *ngIf="!commentSaved; else commentStatic">
+                <mat-form-field class="comments">
+                    <textarea
+                        [(ngModel)]="movieComment"
+                        placeholder="Comment"
+                        matInput
+                        matTextareaAutosize
+                        matAutosizeMinRows="1"
+                        matAutosizeMaxRows="4"
+                    ></textarea>
+                </mat-form-field>
+    
+                <div class="word-count" [ngStyle]="{color: movieComment.trim().length === 0 ? 'firebrick' : 'darkgreen'}">
+                    {{wordCount()}} words
+                </div>
+            </div>
+
+
+            <!-- <div [hidden]="!commentSaved">  -->
+            <!-- Replacing this with static template, to be used in conditional rendering -->
+            <ng-template #commentStatic>
+                <p>
+                    Comment:
+                </p>
+                <p class="comment">
+                    {{movieComment}}
+                </p>
+            </ng-template>
+
+            <mat-card-actions>
+                <button
+                    mat-raised-button
+                    [disabled]="movieComment.trim().length === 0"
+                    (click)="saveComment()"
+                    >{{ commentSaved ? 'Edit' : 'Save' }} comment
+                </button>
+            </mat-card-actions>
+        </div>
+    </mat-card-content>
+
+</mat-card>
+
