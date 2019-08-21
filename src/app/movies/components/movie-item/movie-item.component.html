@@ -1,10 +1,16 @@
 
 
-<mat-card 
+<!-- <mat-card 
     class="movie-item" 
     *ngFor="let movie of movies; let $i = index; let $o = odd; let $e = even;"
     [ngClass]="{'odd-class': $o, 'even-class': $e}"
-    >Card #{{$i+1}}, Even: {{$e}}, Odd: {{$o}}
+    >Card #{{$i+1}}, Even: {{$e}}, Odd: {{$o}} 
+    // this is going to be replaced with an *ngFor used in the movie-list component
+    // we are now reusing MovieItemComponent for every movie
+-->
+
+<!-- movie.title, movie.genre etc. => movie is the input, received from movie-list; each movie from the list is being passed in this component -->
+    <mat-card class="movie-item">
 
     <mat-card-header>
         <mat-card-title>
@@ -33,7 +39,7 @@
             <div *ngIf="!commentSaved; else commentStatic">
                 <mat-form-field class="comments">
                     <textarea
-                        [(ngModel)]="movieComment"
+                        [(ngModel)]="movie.comment"
                         placeholder="Comment"
                         matInput
                         matTextareaAutosize
@@ -42,8 +48,8 @@
                     ></textarea>
                 </mat-form-field>
     
-                <div class="word-count" [ngStyle]="{color: movieComment.trim().length === 0 ? 'firebrick' : 'darkgreen'}">
-                    {{wordCount()}} words
+                <div class="word-count" [ngStyle]="{color: movie.comment.trim().length === 0 ? 'firebrick' : 'darkgreen'}">
+                    {{wordCount(movie.comment)}} words
                 </div>
             </div>
 
@@ -55,15 +61,15 @@
                     Comment:
                 </p>
                 <p class="comment">
-                    {{movieComment}}
+                    {{movie.comment}}
                 </p>
             </ng-template>
 
             <mat-card-actions>
                 <button
                     mat-raised-button
-                    [disabled]="movieComment.trim().length === 0"
-                    (click)="saveComment()"
+                    [disabled]="movie.comment.trim().length === 0"
+                    (click)="saveComment(movie.id)"
                     >{{ commentSaved ? 'Edit' : 'Save' }} comment
                 </button>
             </mat-card-actions>
